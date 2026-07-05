@@ -5,6 +5,8 @@ import { lightTheme } from "./theme/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DevicesPage } from "./pages/devices";
 
+
+
 function App() {
   return (
     <BrowserRouter>

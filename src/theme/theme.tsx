@@ -20,6 +20,10 @@ export const lightTheme = {
   font: {
     primary: "#1E1E1E",
     secondary: "#5f738f"
+  }, 
+  auxiliar: {
+    success: "#22C55E",
+    alert: "#EF4444"
   }
 }
 

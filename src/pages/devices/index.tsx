@@ -4,6 +4,7 @@ import { DevicesPageWrapper } from "./styles"
 import type { Devices } from "../../@types";
 import { getDevices } from "../../API";
 
+
 export const DevicesPage = () => {
   const [devices, setDevices] = useState<Devices[]>([]);
   useEffect(() => {
@@ -32,6 +33,24 @@ export const DevicesPage = () => {
             return <DeviceCard key={i} device={device} />
           })
         }
+
+        {/* Para criar volume */}
+        {
+          devices.map( (device, i) => {
+            return <DeviceCard key={i} device={device} />
+          })
+        }
+        {
+          devices.map( (device, i) => {
+            return <DeviceCard key={i} device={device} />
+          })
+        }
+        {
+          devices.map( (device, i) => {
+            return <DeviceCard key={i} device={device} />
+          })
+        }
+        
       </main>
     </DevicesPageWrapper>
   )

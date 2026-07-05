@@ -1,37 +1,65 @@
-import { LuMonitor, LuScreenShare, LuSquareTerminal } from "react-icons/lu"
-import { DeviceCardWrapper, DeviceBusinessTag, DeviceActionButton } from "./styles"
+import { LuApple, LuMonitor, LuScreenShare, LuSquareTerminal, LuTerminal } from "react-icons/lu"
+import { DeviceCardWrapper, DeviceBusinessTag, DeviceActionButton, DeviceStatusPulse } from "./styles"
 import type { Devices } from "../../@types"
+import type { IconType } from "react-icons";
+import { AnimatePresence, easeInOut, reverseEasing } from "motion/react";
 
 interface DeviceCardProps {
   device: Devices;
 }
 
-export const DeviceCard = ({ device }:DeviceCardProps) => {
 
+const osOptions: Record<string, IconType> = {
+  "linux": LuTerminal,
+  "apple": LuApple,
+  "macos": LuApple,
+  "windows": LuMonitor
+}
+
+export const DeviceCard = ({ device }:DeviceCardProps) => {
+  const deviceId = device.accessId;
+  const devicePassword = device.accessPassword
+  const deviceOs = device.fullOs?.split("/")[0].toLowerCase() || ""
+  const DeviceIcon =  osOptions[deviceOs.trim()]
+  const lastStatus = new Date(device.lastStatus)
+  
   const handleShareScreen = () => {
-    window.location.href = `rustdesk://connection/new/${device.accessId}?password=Leo15401999`
+    window.location.href = `rustdesk://connection/new/${deviceId}${devicePassword ? `?password=${devicePassword}` : ""}`
   }
 
   const handleBashTerminal = () => {
-    window.location.href = `rustdesk://terminal/${device.accessId}?password=Leo15401999`
+    window.location.href = `rustdesk://terminal/${deviceId}${devicePassword ? `?password=${devicePassword}` : ""}`
   }
 
   return (
-    <DeviceCardWrapper>
+    <DeviceCardWrapper $isOnline={device.isOnline}>
       <header>
         <div>
           <h4>{device.name || "Sem nome"}</h4>
-          <p>{device.accessId}</p>
+          <p>{deviceId}</p>
         </div>
-        <div>
-          <p>Online</p>
-        </div>
+        <section className="device-status">
+          <div className="device-indicator">
+            <AnimatePresence>
+              <span className="indicator"></span>
+              <DeviceStatusPulse 
+                $isOnline={device.isOnline} 
+                initial={{ scale: 1 }}
+                animate={{ scale: 0.75}}
+                transition={{ duration: .8, ease: easeInOut, repeat: Infinity, repeatType: "reverse" }}
+              />
+            </AnimatePresence>
+          </div>
+          <p>{device.isOnline ? "Online" : "Offline"}</p>
+        </section>
       </header>
 
       <main>
         <div className="os">
-          <LuMonitor />
-          <p>{device.fullOs?.split("/")[0]}</p>
+          {
+            DeviceIcon ? <DeviceIcon /> : <LuMonitor />
+          }
+          <p>{deviceOs.slice(0, 1).toUpperCase() + deviceOs.slice(1, deviceOs.length)}</p>
         </div>
         <div className="actions">
           <DeviceActionButton onClick={handleBashTerminal}>
@@ -45,7 +73,7 @@ export const DeviceCard = ({ device }:DeviceCardProps) => {
 
       <footer>
         <DeviceBusinessTag>{device.businessId}</DeviceBusinessTag>
-        <p>Agora</p>
+        <p>{lastStatus.toLocaleDateString()}</p>
       </footer>
     </DeviceCardWrapper>
   )

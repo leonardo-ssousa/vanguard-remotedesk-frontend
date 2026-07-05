@@ -6,9 +6,12 @@ export interface Devices {
   createdAt: string;
   cpu: string;
   accessId: string;
+  accessPassword: string | null,
   memory: string;
   fullOs: string;
   localUsername: string;
   version: string;
   businessId: string;
+  isOnline: boolean;
+  lastStatus: number;
 }
