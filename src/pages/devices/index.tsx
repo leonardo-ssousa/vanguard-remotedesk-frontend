@@ -1,4 +1,4 @@
-git import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DeviceCard } from "../../components/DeviceCard"
 import { DevicesPageWrapper } from "./styles"
 import type { Devices } from "../../@types";
