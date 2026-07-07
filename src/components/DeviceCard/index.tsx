@@ -3,6 +3,7 @@ import { DeviceCardWrapper, DeviceBusinessTag, DeviceActionButton, DeviceStatusP
 import type { Devices } from "../../@types"
 import type { IconType } from "react-icons";
 import { AnimatePresence, easeInOut, reverseEasing } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 interface DeviceCardProps {
   device: Devices;
@@ -17,26 +18,31 @@ const osOptions: Record<string, IconType> = {
 }
 
 export const DeviceCard = ({ device }:DeviceCardProps) => {
-  const deviceId = device.accessId;
+  const navigate = useNavigate()
+  const accessId = device.accessId;
   const devicePassword = device.accessPassword
   const deviceOs = device.fullOs?.split("/")[0].toLowerCase() || ""
   const DeviceIcon =  osOptions[deviceOs.trim()]
   const lastStatus = new Date(device.lastStatus)
   
   const handleShareScreen = () => {
-    window.location.href = `rustdesk://connection/new/${deviceId}${devicePassword ? `?password=${devicePassword}` : ""}`
+    window.location.href = `rustdesk://connection/new/${accessId}${devicePassword ? `?password=${devicePassword}` : ""}`
   }
 
   const handleBashTerminal = () => {
-    window.location.href = `rustdesk://terminal/${deviceId}${devicePassword ? `?password=${devicePassword}` : ""}`
+    window.location.href = `rustdesk://terminal/${accessId}${devicePassword ? `?password=${devicePassword}` : ""}`
+  }
+
+  const handleOnClick = () => {
+    navigate(`/${device.id}`)
   }
 
   return (
-    <DeviceCardWrapper $isOnline={device.isOnline}>
+    <DeviceCardWrapper $isOnline={device.isOnline} onClick={handleOnClick}>
       <header>
         <div>
           <h4>{device.name || "Sem nome"}</h4>
-          <p>{deviceId}</p>
+          <p>{accessId}</p>
         </div>
         <section className="device-status">
           <div className="device-indicator">

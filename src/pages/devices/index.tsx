@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+git import { useEffect, useState } from "react";
 import { DeviceCard } from "../../components/DeviceCard"
 import { DevicesPageWrapper } from "./styles"
 import type { Devices } from "../../@types";
@@ -33,24 +33,6 @@ export const DevicesPage = () => {
             return <DeviceCard key={i} device={device} />
           })
         }
-
-        {/* Para criar volume */}
-        {
-          devices.map( (device, i) => {
-            return <DeviceCard key={i} device={device} />
-          })
-        }
-        {
-          devices.map( (device, i) => {
-            return <DeviceCard key={i} device={device} />
-          })
-        }
-        {
-          devices.map( (device, i) => {
-            return <DeviceCard key={i} device={device} />
-          })
-        }
-        
       </main>
     </DevicesPageWrapper>
   )
