@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme } from "./theme/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DevicesPage } from "./pages/devices";
+import { DevicesDetailsPage } from "./pages/deviceDetails";
 
 
 
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
             <Route path="devices" element={<DevicesPage />} />
+            <Route path="devices/:uuid" element={<DevicesDetailsPage />} />
           </Route>
         </Routes>
       </ThemeProvider>

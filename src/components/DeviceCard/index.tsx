@@ -2,7 +2,7 @@ import { LuApple, LuMonitor, LuScreenShare, LuSquareTerminal, LuTerminal } from 
 import { DeviceCardWrapper, DeviceBusinessTag, DeviceActionButton, DeviceStatusPulse } from "./styles"
 import type { Devices } from "../../@types"
 import type { IconType } from "react-icons";
-import { AnimatePresence, easeInOut, reverseEasing } from "motion/react";
+import { AnimatePresence, easeInOut } from "motion/react";
 import { useNavigate } from "react-router-dom";
 
 interface DeviceCardProps {
@@ -34,7 +34,7 @@ export const DeviceCard = ({ device }:DeviceCardProps) => {
   }
 
   const handleOnClick = () => {
-    navigate(`/${device.id}`)
+    navigate(`/devices/${device.id}`)
   }
 
   return (
