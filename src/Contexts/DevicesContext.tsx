@@ -28,7 +28,7 @@ export const DevicesProvider = ({children}: DevicesProviderProps) => {
     return {
       fetchDevices,
       devices,
-      loading
+      loading,
     }
   }, [devices, loading])
 

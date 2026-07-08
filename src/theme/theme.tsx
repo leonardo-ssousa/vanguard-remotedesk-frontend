@@ -1,4 +1,7 @@
 export const lightTheme = {
+  colors: {
+    primary: "#27272a",
+  },
   background: {
     primary: "#ffffff",
     secondary: "#f4f4f5",
@@ -19,7 +22,8 @@ export const lightTheme = {
   },
   font: {
     primary: "#1E1E1E",
-    secondary: "#5f738f"
+    secondary: "#5f738f",
+    white: "#ffffff",
   }, 
   auxiliar: {
     success: "#22C55E",
