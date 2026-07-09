@@ -39,9 +39,9 @@ export const Button = ({children, StartIcon, EndIcon, buttonType, ...rest}: Butt
 
 
   return (
-    <ButtonWrapper {...rest} $typeColors={buttonType ? types[buttonType] : types.secondary}>
+    <ButtonWrapper  $typeColors={buttonType ? types[buttonType] : types.secondary}>
       {StartIcon && <StartIcon />}
-      <button>{children}</button>
+      <button {...rest}>{children}</button>
       {EndIcon && <EndIcon />}
     </ButtonWrapper>
   )
