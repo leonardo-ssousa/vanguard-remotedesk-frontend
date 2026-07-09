@@ -1,8 +1,10 @@
 import { LuActivity, LuLogOut, LuMonitor, LuScreenShare, LuUsers } from "react-icons/lu";
 import { SidebarWrapper } from "./styles";
 import SidebarButton from "./sidebar-button";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate()
 
 
   const buttons = [
@@ -10,7 +12,7 @@ function Sidebar() {
       title: "Dispositivos",
       activeUrl: "devices",
       icon: LuMonitor,
-      path: ""
+      path: "/devices"
     },
     {
       title: "Usuários",
@@ -41,7 +43,7 @@ function Sidebar() {
       <section className="sidebar-buttons">
         {
           buttons.map( (btn, i) => {
-            return <SidebarButton key={i} activeUrl={btn.activeUrl} Icon={btn.icon}>{btn.title}</SidebarButton>
+            return <SidebarButton key={i} activeUrl={btn.activeUrl} Icon={btn.icon} onClick={() => navigate(btn.path)}>{btn.title}</SidebarButton>
           })
         }
         
