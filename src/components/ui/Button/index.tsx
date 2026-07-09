@@ -8,11 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   children: React.ReactNode,
   StartIcon?: IconType;
   EndIcon?: IconType;
-  buttonType?: "primary" | "secondary" | "tertiary"
+  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 
-export const Button = ({children, StartIcon, EndIcon, buttonType}: ButtonProps) => {
+export const Button = ({children, StartIcon, EndIcon, buttonType, ...rest}: ButtonProps) => {
   const theme = useTheme()
 
   const types = {
@@ -39,7 +39,7 @@ export const Button = ({children, StartIcon, EndIcon, buttonType}: ButtonProps) 
 
 
   return (
-    <ButtonWrapper $typeColors={buttonType ? types[buttonType] : types.secondary}>
+    <ButtonWrapper {...rest} $typeColors={buttonType ? types[buttonType] : types.secondary}>
       {StartIcon && <StartIcon />}
       <button>{children}</button>
       {EndIcon && <EndIcon />}
