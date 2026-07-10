@@ -32,7 +32,6 @@ export const DeviceCard = ({ device }: DeviceCardProps) => {
   const navigate = useNavigate();
   const { handleBashTerminal, handleShareScreen } = useDevices();
   const accessId = device.accessId;
-  const devicePassword = device.accessPassword;
   const deviceOs = device.fullOs?.split("/")[0].toLowerCase() || "";
   const DeviceIcon = osOptions[deviceOs.trim()];
   const lastStatus = new Date(device.lastStatus);
