@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import type { Device } from "../@types";
-import { getBashTerminalUri, getConectionUri, getDevice, getDevices } from "../API";
+import { getBashTerminalUri, getConectionUri, getDevices } from "../API";
 
 
 interface DevicesContextData {
