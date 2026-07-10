@@ -8,7 +8,7 @@ import {
   PageSection,
   HistoryConectionLeft,
 } from "./styles";
-import type { Device } from "../../@types";
+import type { ConectionsHistory, Device } from "../../@types";
 import { Button } from "../../components/ui/Button";
 import {
   LuArrowLeft,
@@ -26,20 +26,33 @@ import { LivePulse } from "../../components/ui/LivePulse";
 import { Pill } from "../../components/ui/Pill";
 import { useDevices } from "../../Contexts/DevicesContext";
 import { useParams } from "react-router-dom";
-import { getDevice } from "../../API";
+import { getDevice, getDeviceConectionsHistory } from "../../API";
 
 export const DevicesDetailsPage = () => {
   const { handleShareScreen, handleBashTerminal } = useDevices();
   const { id } = useParams() as { id: string };
   const [currentDevice, setCurrentDevice] = useState<Device>();
+  const [history, setHistory] = useState<ConectionsHistory[]>();
+  const [activeConections, setActiveConections] =
+    useState<ConectionsHistory[]>();
 
   const getCurrentDevice = async () => {
-    const device = await getDevice(id)
-    setCurrentDevice(device.data)
-  }
+    const device = await getDevice(id);
+    setCurrentDevice(device.data);
+  };
+
+  const handleConectionsHistory = async () => {
+    const history = await getDeviceConectionsHistory(id);
+
+    setActiveConections(
+      history.data.filter((register) => register.endAt == null),
+    );
+    setHistory(history.data.filter((register) => register.endAt != null));
+  };
 
   useEffect(() => {
-      getCurrentDevice()
+    getCurrentDevice();
+    handleConectionsHistory();
   }, []);
 
   return (
@@ -71,8 +84,17 @@ export const DevicesDetailsPage = () => {
             <section className="device-actions">
               <Button StartIcon={LuPencil}>Renomear</Button>
               <Button StartIcon={LuKeyRound}>Alterar senha</Button>
-              <Button StartIcon={LuTerminal} onClick={() => handleBashTerminal(currentDevice.id)}>Terminal</Button>
-              <Button StartIcon={LuMonitor} onClick={() => handleShareScreen(currentDevice.id)} buttonType="primary">
+              <Button
+                StartIcon={LuTerminal}
+                onClick={() => handleBashTerminal(currentDevice.id)}
+              >
+                Terminal
+              </Button>
+              <Button
+                StartIcon={LuMonitor}
+                onClick={() => handleShareScreen(currentDevice.id)}
+                buttonType="primary"
+              >
                 Espelhar Tela
               </Button>
             </section>
@@ -80,43 +102,81 @@ export const DevicesDetailsPage = () => {
           <main>
             <PageSection>
               <h4>Conexão Ativa</h4>
-              <ActiveSessionCard $active>
-                <ActiveConectionLeft>
-                  <LivePulse isActive />
-                  <ConectionRoute>
-                    <p>Leonardo Silva</p>
-                    <LuArrowRight className="icon" />
-                    <p>PC - Recepção</p>
-                  </ConectionRoute>
-                  <ConectionOrigin>
-                    <LuMonitor />
-                    <p>Windows</p>
-                  </ConectionOrigin>
-                </ActiveConectionLeft>
-                <section className="right">
-                  <div className="session-infos">
-                    <p className="title">TEMPO DE SESSÃO</p>
-                    <p className="time">42m 18s</p>
-                  </div>
-                  <Button>Encerrar</Button>
-                </section>
-              </ActiveSessionCard>
+              {activeConections?.length ? (
+                activeConections.map((register) => {
+                  console.log("asdasd", activeConections);
 
-              <ActiveSessionCard $active={false}>
-                <ActiveConectionLeft>
-                  <LuRadio />
-                  <ConectionRoute>
-                    <p>Nenhuma sessão ativa no momento.</p>
-                  </ConectionRoute>
-                </ActiveConectionLeft>
-                <section className="right">
-                  <Button StartIcon={LuWifi}>Iniciar sessão</Button>
-                </section>
-              </ActiveSessionCard>
+                  return (
+                    <ActiveSessionCard key={register.id} $active>
+                      <ActiveConectionLeft>
+                        <LivePulse isActive />
+                        <ConectionRoute>
+                          <p>{register.user.friendlyName}</p>
+                          <LuArrowRight className="icon" />
+                          <p>{currentDevice.name || "Sem nome"}</p>
+                        </ConectionRoute>
+                        <ConectionOrigin>
+                          <LuMonitor />
+                          <p>{register.type}</p>
+                        </ConectionOrigin>
+                      </ActiveConectionLeft>
+                      <section className="right">
+                        <div className="session-infos">
+                          <p className="title">TEMPO DE SESSÃO</p>
+                          <p className="time">42m 18s</p>
+                        </div>
+                        <Button>Encerrar</Button>
+                      </section>
+                    </ActiveSessionCard>
+                  );
+                })
+              ) : (
+                <ActiveSessionCard $active={false}>
+                  <ActiveConectionLeft>
+                    <LuRadio />
+                    <ConectionRoute>
+                      <p>Nenhuma sessão ativa no momento.</p>
+                    </ConectionRoute>
+                  </ActiveConectionLeft>
+                  <section className="right">
+                    <Button StartIcon={LuWifi}>Iniciar sessão</Button>
+                  </section>
+                </ActiveSessionCard>
+              )}
             </PageSection>
 
             <PageSection>
               <h4>Histórico de conexões · 2</h4>
+              {history &&
+                history.map((register) => {
+                  const accessDate = new Date(
+                    register.startAt,
+                  ).toLocaleString();
+                  return (
+                    <ActiveSessionCard key={register.id} $active>
+                      <HistoryConectionLeft>
+                        <ConectionRoute className="conection-route">
+                          <Pill>#{register.id}</Pill>
+                          <p>{register.user.friendlyName}</p>
+                        </ConectionRoute>
+                        <ConectionOrigin>
+                          <p>
+                            Acessou em{" "}
+                            {accessDate
+                              .replace(",", "")
+                              .slice(0, accessDate.length - 4)}
+                          </p>
+                        </ConectionOrigin>
+                      </HistoryConectionLeft>
+                      <section className="right">
+                        <div className="session-infos">
+                          <p className="time">42m 18s</p>
+                        </div>
+                        <LuChevronDown />
+                      </section>
+                    </ActiveSessionCard>
+                  );
+                })}
               <ActiveSessionCard $active>
                 <HistoryConectionLeft>
                   <ConectionRoute className="conection-route">

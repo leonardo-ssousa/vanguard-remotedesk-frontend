@@ -1,6 +1,8 @@
-import type { DevicesResponse, DeviceResponse } from "../@types/api";
+import type { DevicesResponse, DeviceResponse, ConectionHistoryResponse } from "../@types/api";
 import AxiosInstance from "./axiosInstance";
 
+
+// #region Devices
 export const getDevices = async () => {
   try {
     const devices = await AxiosInstance.get<DevicesResponse>("/devices");
@@ -26,7 +28,7 @@ export const getConectionUri = async (id: string) => {
     const uri = await AxiosInstance.get<string>(`/conn-uri/${id}`);
     return uri.data;
   } catch (error) {
-    console.error("Erro ao buscar dispositivos:", error);
+    console.error("Erro ao buscar URI de conexão:", error);
     throw error;
   }
 };
@@ -36,7 +38,20 @@ export const getBashTerminalUri = async (id: string) => {
     const uri = await AxiosInstance.get<string>(`/bash-uri/${id}`);
     return uri.data;
   } catch (error) {
-    console.error("Erro ao buscar dispositivos:", error);
+    console.error("Erro ao buscar URI de conexão ao terminal:", error);
     throw error;
   }
 };
+
+export const getDeviceConectionsHistory = async (id: string) => {
+  try {
+    const uri = await AxiosInstance.get<ConectionHistoryResponse>(`/conn-history/${id}`);
+    return uri.data;
+  } catch (error) {
+    console.error("Erro ao buscar historio do dispositivo:", error);
+    throw error;
+  }
+};
+
+
+// #endregion
