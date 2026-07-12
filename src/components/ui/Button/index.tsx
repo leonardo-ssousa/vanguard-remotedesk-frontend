@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   EndIcon?: IconType;
   buttonType?: "primary" | "secondary" | "tertiary";
   onClick?: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 
