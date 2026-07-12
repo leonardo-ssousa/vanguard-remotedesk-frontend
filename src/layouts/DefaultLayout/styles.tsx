@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const DefaultLayoutWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 288px 1fr;
   width: 100vw;
   height: 100vh;
   background-color: ${props => props.theme.background.tertiary};
@@ -10,6 +11,7 @@ export const DefaultLayoutWrapper = styled.div`
     // padding: 32px;
     width: 100%;
     height: 100%;
+    overflow: auto;
   }
 
 `
