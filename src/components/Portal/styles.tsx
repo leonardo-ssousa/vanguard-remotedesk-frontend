@@ -7,7 +7,7 @@ export const ModalPortalWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #00000033;
+  background-color: #00000055;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(8px);
 `
