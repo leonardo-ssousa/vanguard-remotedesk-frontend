@@ -25,4 +25,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
      font-family: "Google Sans";
   }
+
+  #modals-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 `;

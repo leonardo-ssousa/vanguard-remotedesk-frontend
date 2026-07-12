@@ -27,6 +27,7 @@ import { Pill } from "../../components/ui/Pill";
 import { useDevices } from "../../Contexts/DevicesContext";
 import { useParams } from "react-router-dom";
 import { getDevice, getDeviceConectionsHistory } from "../../API";
+import { ModalPortal } from "../../components/Portal";
 
 export const DevicesDetailsPage = () => {
   const { handleShareScreen, handleBashTerminal } = useDevices();
@@ -216,6 +217,8 @@ export const DevicesDetailsPage = () => {
           </main>
         </>
       )}
+
+      <ModalPortal isOpen={true} onClose={() => {}}>aasd</ModalPortal>
     </DevicesDetailsPageWrapper>
   );
 };
