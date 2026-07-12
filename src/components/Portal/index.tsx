@@ -19,7 +19,7 @@ export const ModalPortal = ({
     <ModalPortalWrapper>
       <AnimatePresence>
         <ModalCard
-          initial={{ y: 30, opacity: 0 }}
+          initial={{ y: 0, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ ease: easeIn, duration: .1 }}
         >
