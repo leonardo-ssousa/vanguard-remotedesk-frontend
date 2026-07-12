@@ -15,7 +15,7 @@ import type { Device } from "../../@types";
 import type { IconType } from "react-icons";
 import { AnimatePresence, easeInOut } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { useDevices } from "../../Contexts/DevicesContext";
+import { useDevices } from "../../contexts/DevicesContext";
 
 interface DeviceCardProps {
   device: Device;

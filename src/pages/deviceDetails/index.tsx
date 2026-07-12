@@ -24,7 +24,7 @@ import {
 } from "react-icons/lu";
 import { LivePulse } from "../../components/ui/LivePulse";
 import { Pill } from "../../components/ui/Pill";
-import { useDevices } from "../../Contexts/DevicesContext";
+import { useDevices } from "../../contexts/DevicesContext";
 import { useParams } from "react-router-dom";
 import { getDevice, getDeviceConectionsHistory } from "../../API";
 import { ModalPortal } from "../../components/Portal";

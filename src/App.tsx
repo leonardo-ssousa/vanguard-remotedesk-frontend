@@ -5,7 +5,7 @@ import { lightTheme } from "./theme/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DevicesPage } from "./pages/devices";
 import { DevicesDetailsPage } from "./pages/deviceDetails";
-import { DevicesProvider } from "./Contexts/DevicesContext";
+import { DevicesProvider } from "./contexts/DevicesContext";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { DeviceCard } from "../../components/DeviceCard"
 import { DevicesPageWrapper } from "./styles"
-import { useDevices } from "../../Contexts/DevicesContext";
+import { useDevices } from "../../contexts/DevicesContext";
 
 
 export const DevicesPage = () => {
