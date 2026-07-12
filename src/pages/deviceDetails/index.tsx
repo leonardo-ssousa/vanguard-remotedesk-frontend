@@ -27,7 +27,7 @@ import { Pill } from "../../components/ui/Pill";
 import { useDevices } from "../../contexts/DevicesContext";
 import { useParams } from "react-router-dom";
 import { getDevice, getDeviceConectionsHistory } from "../../API";
-import { ModalPortal } from "../../components/Portal";
+import { RenameModal } from "../../modals/RenameModal";
 
 export const DevicesDetailsPage = () => {
   const { handleShareScreen, handleBashTerminal } = useDevices();
@@ -36,6 +36,7 @@ export const DevicesDetailsPage = () => {
   const [history, setHistory] = useState<ConectionsHistory[]>();
   const [activeConections, setActiveConections] =
     useState<ConectionsHistory[]>();
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const getCurrentDevice = async () => {
     const device = await getDevice(id);
@@ -49,6 +50,16 @@ export const DevicesDetailsPage = () => {
       history.data.filter((register) => register.endAt == null),
     );
     setHistory(history.data.filter((register) => register.endAt != null));
+  };
+
+  const handleCloseModal = (updatedDevice?: Device) => {
+    if (updatedDevice) {
+      setCurrentDevice(prev => {
+        if (!prev) return
+        return {...prev, name: updatedDevice.name}
+      });
+    }
+    setModalIsOpen(false);
   };
 
   useEffect(() => {
@@ -83,7 +94,9 @@ export const DevicesDetailsPage = () => {
             </section>
 
             <section className="device-actions">
-              <Button StartIcon={LuPencil}>Renomear</Button>
+              <Button StartIcon={LuPencil} onClick={() => setModalIsOpen(true)}>
+                Renomear
+              </Button>
               <Button StartIcon={LuKeyRound}>Alterar senha</Button>
               <Button
                 StartIcon={LuTerminal}
@@ -178,47 +191,18 @@ export const DevicesDetailsPage = () => {
                     </ActiveSessionCard>
                   );
                 })}
-              <ActiveSessionCard $active>
-                <HistoryConectionLeft>
-                  <ConectionRoute className="conection-route">
-                    <Pill>#1382</Pill>
-                    <p>Antonio Carlos</p>
-                  </ConectionRoute>
-                  <ConectionOrigin>
-                    <p>Acessou em 04/07/2026 09:12</p>
-                  </ConectionOrigin>
-                </HistoryConectionLeft>
-                <section className="right">
-                  <div className="session-infos">
-                    <p className="time">42m 18s</p>
-                  </div>
-                  <LuChevronDown />
-                </section>
-              </ActiveSessionCard>
-
-              <ActiveSessionCard $active>
-                <HistoryConectionLeft>
-                  <ConectionRoute className="conection-route">
-                    <Pill>#1278</Pill>
-                    <p>Leonardo Sousa</p>
-                  </ConectionRoute>
-                  <ConectionOrigin>
-                    <p>Acessou em 04/07/2026 09:12</p>
-                  </ConectionOrigin>
-                </HistoryConectionLeft>
-                <section className="right">
-                  <div className="session-infos">
-                    <p className="time">42m 18s</p>
-                  </div>
-                  <LuChevronDown />
-                </section>
-              </ActiveSessionCard>
             </PageSection>
           </main>
         </>
       )}
 
-      <ModalPortal isOpen={true} onClose={() => {}}>aasd</ModalPortal>
+      {currentDevice && (
+        <RenameModal
+          device={currentDevice}
+          isOpen={modalIsOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </DevicesDetailsPageWrapper>
   );
 };
