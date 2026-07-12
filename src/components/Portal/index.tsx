@@ -3,22 +3,17 @@ import { ModalCard, ModalPortalWrapper } from "./styles";
 import { AnimatePresence, easeInOut } from "motion/react";
 
 interface ModalPortalProps {
-  isOpen: boolean;
   children: React.ReactNode;
-  onClose?: () => void;
 }
 
 export const ModalPortal = ({
-  children,
-  isOpen,
+  children
 }: ModalPortalProps) => {
   const modalPortalRoot = document.querySelector("#modals-root");
   if (!modalPortalRoot) {
     console.log("Não foi possivel encontar o '#modals-root'");
     return null;
   }
-
-  if (!isOpen) return null;
 
   return createPortal(
     <ModalPortalWrapper>
