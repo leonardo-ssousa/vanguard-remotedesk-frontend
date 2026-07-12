@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import {
-  ActiveSessionCard,
+  CardContent,
   ActiveConectionLeft,
   ConectionOrigin,
   ConectionRoute,
   DevicesDetailsPageWrapper,
   PageSection,
   HistoryConectionLeft,
+  PageSectionTitle,
 } from "./styles";
 import type { ConectionsHistory, Device } from "../../@types";
 import { Button } from "../../components/ui/Button";
@@ -115,13 +116,13 @@ export const DevicesDetailsPage = () => {
           </header>
           <main>
             <PageSection>
-              <h4>Conexão Ativa</h4>
+              <PageSectionTitle>Conexão Ativa</PageSectionTitle>
               {activeConections?.length ? (
                 activeConections.map((register) => {
                   console.log("asdasd", activeConections);
 
                   return (
-                    <ActiveSessionCard key={register.id} $active>
+                    <CardContent key={register.id} $active>
                       <ActiveConectionLeft>
                         <LivePulse isActive />
                         <ConectionRoute>
@@ -141,11 +142,11 @@ export const DevicesDetailsPage = () => {
                         </div>
                         <Button>Encerrar</Button>
                       </section>
-                    </ActiveSessionCard>
+                    </CardContent>
                   );
                 })
               ) : (
-                <ActiveSessionCard $active={false}>
+                <CardContent $active={false}>
                   <ActiveConectionLeft>
                     <LuRadio />
                     <ConectionRoute>
@@ -155,19 +156,19 @@ export const DevicesDetailsPage = () => {
                   <section className="right">
                     <Button StartIcon={LuWifi}>Iniciar sessão</Button>
                   </section>
-                </ActiveSessionCard>
+                </CardContent>
               )}
             </PageSection>
 
             <PageSection>
-              <h4>Histórico de conexões · 2</h4>
+              <PageSectionTitle>Histórico de conexões · 2</PageSectionTitle>
               {history &&
                 history.map((register) => {
                   const accessDate = new Date(
                     register.startAt,
                   ).toLocaleString();
                   return (
-                    <ActiveSessionCard key={register.id} $active>
+                    <CardContent key={register.id} $active>
                       <HistoryConectionLeft>
                         <ConectionRoute className="conection-route">
                           <Pill>#{register.id}</Pill>
@@ -188,7 +189,7 @@ export const DevicesDetailsPage = () => {
                         </div>
                         <LuChevronDown />
                       </section>
-                    </ActiveSessionCard>
+                    </CardContent>
                   );
                 })}
             </PageSection>

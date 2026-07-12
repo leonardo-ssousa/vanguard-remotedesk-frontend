@@ -67,17 +67,19 @@ export const DevicesDetailsPageWrapper = styled.div`
 export const PageSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-
-  & > h4 {
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
+  gap: 8px;
 `;
 
-export const ActiveSessionCard = styled.div<{ $active: boolean }>`
-  border: ${({ $active, theme }) => ($active ? "1px solid" + theme.bw[300] : "1px dashed" + theme.bw[300])};
-  background: ${({ $active, theme }) => ($active ? theme.background.primary : "")};
+export const PageSectionTitle = styled.h4`
+  font-size: 0.875rem;
+  font-weight: 500;
+`;
+
+export const CardContent = styled.div<{ $active: boolean }>`
+  border: ${({ $active, theme }) =>
+    $active ? "1px solid" + theme.bw[300] : "1px dashed" + theme.bw[300]};
+  background: ${({ $active, theme }) =>
+    $active ? theme.background.primary : ""};
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -85,7 +87,7 @@ export const ActiveSessionCard = styled.div<{ $active: boolean }>`
   gap: 20px;
   align-items: center;
   justify-content: space-between;
-  color: ${props => props.theme.font.tertiary};
+  color: ${(props) => props.theme.font.tertiary};
 
   & > .right {
     display: flex;
