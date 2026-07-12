@@ -14,8 +14,15 @@ export interface ConectionHistoryResponse {
   data: ConectionsHistory[];
 }
 
+export interface DeviceRenameResponse {
+  error: boolean;
+  updatedDevice: Device;
+}
+
 //#endregion
 
 //#region REQUESTS
-
+export interface DeviceRenameRequest {
+  name: string;
+}
 //#endregion

@@ -1,6 +1,11 @@
-import type { DevicesResponse, DeviceResponse, ConectionHistoryResponse } from "../@types/api";
+import type {
+  DevicesResponse,
+  DeviceResponse,
+  ConectionHistoryResponse,
+  DeviceRenameRequest,
+  DeviceRenameResponse,
+} from "../@types/api";
 import AxiosInstance from "./axiosInstance";
-
 
 // #region Devices
 export const getDevices = async () => {
@@ -45,7 +50,9 @@ export const getBashTerminalUri = async (id: string) => {
 
 export const getDeviceConectionsHistory = async (id: string) => {
   try {
-    const uri = await AxiosInstance.get<ConectionHistoryResponse>(`/conn-history/${id}`);
+    const uri = await AxiosInstance.get<ConectionHistoryResponse>(
+      `/conn-history/${id}`,
+    );
     return uri.data;
   } catch (error) {
     console.error("Erro ao buscar historio do dispositivo:", error);
@@ -53,5 +60,19 @@ export const getDeviceConectionsHistory = async (id: string) => {
   }
 };
 
+export const renameDevice = async (id: string, newName: string) => {
+  try {
+    const payload: DeviceRenameRequest = { name: newName };
+    const newDevice = await AxiosInstance.post<DeviceRenameResponse>(
+      `/device/rename/${id}`,
+      payload,
+    );
+
+    return newDevice.data;
+  } catch (error) {
+    console.error("Erro ao renomear o dispositivo:", error);
+    throw error;
+  }
+};
 
 // #endregion
