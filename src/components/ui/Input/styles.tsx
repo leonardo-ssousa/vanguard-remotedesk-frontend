@@ -16,6 +16,11 @@ export const InputContainer = styled.div`
   border: 1px solid ${(props) => props.theme.bw[200]};
   padding: 8px 12px;
 
+  &:focus-within{
+    border: 1px solid ${(props) => props.theme.border.heavy};
+    box-shadow: ${props => props.theme.shadows.secondBorder};
+  }
+
   input {
     border: none;
     outline: none;
