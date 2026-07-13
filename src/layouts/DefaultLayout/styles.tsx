@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DefaultLayoutWrapper = styled.div`
   display: grid;
-  grid-template-columns: 288px 1fr;
+  grid-template-columns: 240px 1fr;
   width: 100vw;
   height: 100vh;
   background-color: ${props => props.theme.background.tertiary};

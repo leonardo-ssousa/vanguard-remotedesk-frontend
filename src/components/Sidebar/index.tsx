@@ -2,6 +2,7 @@ import { LuActivity, LuLogOut, LuMonitor, LuScreenShare, LuUsers } from "react-i
 import { SidebarWrapper } from "./styles";
 import SidebarButton from "./sidebar-button";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.svg"
 
 function Sidebar() {
   const navigate = useNavigate()
@@ -33,7 +34,7 @@ function Sidebar() {
     <SidebarWrapper>
       <header className="logo-continer">
         <div className="icon">
-          <LuScreenShare />
+          <img src={logo} alt="Vanguard" />
         </div>
         <div className="brand">
           <p>Vanguard</p>
