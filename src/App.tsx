@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DevicesPage } from "./pages/devices";
 import { DevicesDetailsPage } from "./pages/deviceDetails";
 import { DevicesProvider } from "./contexts/DevicesContext";
+import LoginPage from "./pages/login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <GlobalStyle />
 
           <Routes>
+            <Route path="/login" element={<LoginPage/>} />
             <Route path="/" element={<DefaultLayout />}>
               <Route path="devices" element={<DevicesPage />} />
               <Route path="devices/:id" element={<DevicesDetailsPage />} />

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#Gradiente_sem_nome_46);
+      }
+
+      .st1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+    <linearGradient id="Gradiente_sem_nome_46" data-name="Gradiente sem nome 46" x1="162.3" y1="-93.7" x2="861.7" y2="1117.7" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#161c2d"/>
+      <stop offset="1" stop-color="#2c3e5d"/>
+    </linearGradient>
+  </defs>
+  <g id="Camada_2">
+    <rect class="st0" width="1024" height="1024"/>
+  </g>
+  <g id="Camada_1">
+    <path id="Forma_5" class="st1" d="M811.09,718.13l-88.62,57.45-151.57-77.39-99.47,77.09-257.99.07,357.45-109.47,151.11,70.97,89.07-18.71Z"/>
+    <path id="Forma_3" class="st1" d="M236.77,609.28l521.97-185.66-87.33,263.34-99.67-47.48-258.62,79.92-76.33-110.12Z"/>
+    <path id="Forma_4" class="st1" d="M708.95,647.23l104.05-169.07-29.11-54.78-74.94,223.84Z"/>
+    <path id="Forma_1" class="st1" d="M213.07,249.76h180.07l94.45,243.17-116.77,41.75-113.5-236.24s-6.92-15.77-22.89-29.81c-11.56-10.17-21.36-18.86-21.36-18.86h0Z"/>
+    <path id="Forma_2" class="st1" d="M589.94,250.66h171.99l-83.53,174.98-135.01,48.37s57.91-126.39,71.95-163.13c14.05-36.75-25.39-60.22-25.39-60.22h0Z"/>
+  </g>
+</svg>

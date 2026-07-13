@@ -25,12 +25,22 @@ export const lightTheme = {
     secondary: "#5f738f",
     tertiary: "#8ea3c2",
     white: "#ffffff",
-  }, 
+  },
   auxiliar: {
     success: "#22C55E",
-    alert: "#EF4444"
-  }
-}
+    alert: "#EF4444",
+  },
+  border: {
+    default: "#e4e4e7",
+    strong: "#d4d4d8",
+    heavy: "#262626",
+  },
 
+  shadows: {
+    sm: "0 1px 2px rgba(0, 0, 0, 0.04)",
+    md: "0 4px 12px -2px rgba(0, 0, 0, 0.06)",
+    secondBorder: "0 0 0 3px rgba(0, 0, 0, 0.06)",
+  },
+};
 
-export type ThemeType = typeof lightTheme
+export type ThemeType = typeof lightTheme;

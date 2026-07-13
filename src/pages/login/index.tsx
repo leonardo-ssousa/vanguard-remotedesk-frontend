@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { FooterLabel, Header, LoginForm, LoginPageWrapper, LogoContainer } from "./styles";
+import logo from "../../assets/logo.svg";
+import { Card } from "../../components/Card";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -14,52 +18,41 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
-      <div className="w-full max-w-sm">
-        <div className="mb-8 flex flex-col items-center gap-2 text-center">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-foreground text-background">
-            LG
-          </div>
-          <h1 className="text-xl font-semibold tracking-tight">Entrar no painel</h1>
-          <p className="text-sm text-muted-foreground">Gerencie seu parque remoto</p>
-        </div>
+    <LoginPageWrapper>
+      <Header>
+        <LogoContainer>
+          <img src={logo} alt="Vanguard" />
+        </LogoContainer>
+        <h3>Entrar no painel</h3>
+        <p>Gerencie seu parque remoto</p>
+      </Header>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 rounded-xl border border-border/70 bg-background p-6 shadow-sm"
-        >
-          <div className="space-y-2">
-            <label htmlFor="email">E-mail</label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="password">Senha</label>
-            <input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="w-full">
-            Entrar
-          </button>
-          <p className="text-center text-xs text-muted-foreground">
-            Demonstração — qualquer credencial entra.
-          </p>
-        </form>
-      </div>
-    </div>
+      <Card style={{ width: "90vw", maxWidth: "400px" }}>
+        <LoginForm onSubmit={handleSubmit}>
+          <Input
+            id="email"
+            title="E-mail"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <Input
+            id="password"
+            type="password"
+            title="Senha"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <Button buttonType="primary" type="submit" style={{padding: "12px 0", marginTop: "12px"}}>Entrar</Button>
+        </LoginForm>
+      </Card>
+      <FooterLabel>Desenvolvido por — Vanguard Solutions.</FooterLabel>
+    </LoginPageWrapper>
   );
 }
 
-export default LoginPage
+export default LoginPage;
