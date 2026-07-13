@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { DeviceCard } from "../../components/DeviceCard"
 import { DevicesPageWrapper } from "./styles"
 import { useDevices } from "../../contexts/DevicesContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 export const DevicesPage = () => {

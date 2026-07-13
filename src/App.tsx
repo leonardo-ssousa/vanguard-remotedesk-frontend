@@ -7,23 +7,26 @@ import { DevicesPage } from "./pages/devices";
 import { DevicesDetailsPage } from "./pages/deviceDetails";
 import { DevicesProvider } from "./contexts/DevicesContext";
 import LoginPage from "./pages/login";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <DevicesProvider>
-        <ThemeProvider theme={lightTheme}>
-          <GlobalStyle />
+      <AuthProvider>
+        <DevicesProvider>
+          <ThemeProvider theme={lightTheme}>
+            <GlobalStyle />
 
-          <Routes>
-            <Route path="/login" element={<LoginPage/>} />
-            <Route path="/" element={<DefaultLayout />}>
-              <Route path="devices" element={<DevicesPage />} />
-              <Route path="devices/:id" element={<DevicesDetailsPage />} />
-            </Route>
-          </Routes>
-        </ThemeProvider>
-      </DevicesProvider>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/" element={<DefaultLayout />}>
+                <Route path="devices" element={<DevicesPage />} />
+                <Route path="devices/:id" element={<DevicesDetailsPage />} />
+              </Route>
+            </Routes>
+          </ThemeProvider>
+        </DevicesProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
