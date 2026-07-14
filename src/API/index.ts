@@ -1,11 +1,42 @@
+import { Axios, AxiosError, isAxiosError } from "axios";
 import type {
   DevicesResponse,
   DeviceResponse,
   ConectionHistoryResponse,
   DeviceRenameRequest,
   DeviceRenameResponse,
+  LoginResponse,
+  LoginRequest,
+  BackendError,
+  ApiErrorResponse,
 } from "../@types/api";
-import AxiosInstance from "./axiosInstance";
+import {AxiosInstance} from "./axiosInstance";
+
+const handleError = (error: AxiosError<BackendError>):ApiErrorResponse => {
+  return {
+    status: error.response?.status,
+    message: error.response?.data.message
+  }
+}
+
+// #region Account
+export const Login = async (email: string, password: string) => {
+  try {
+    const payload: LoginRequest = { email, password }
+    const user = await AxiosInstance.post<LoginResponse>("/login", payload)
+    return user.data
+  } catch (error) {
+    if(isAxiosError(error)){
+      console.error("Erro ao fazer Login:", handleError(error))
+      throw handleError(error)
+    } else {
+      console.error("Erro inesperado ao fazer Login:", error)
+      throw error
+    }
+  }
+}
+
+// #endregion
 
 // #region Devices
 export const getDevices = async () => {

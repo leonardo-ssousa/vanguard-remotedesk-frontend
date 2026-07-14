@@ -43,6 +43,12 @@ export const LoginForm = styled.form`
   gap: 16px;
 `
 
+export const ErrorLabel = styled.p`
+  text-align: center;
+  font-size: .875rem;
+  color: ${props => props.theme.auxiliar.alert}
+`
+
 export const FooterLabel = styled.p`
   font-size: 0.75rem;
   color: ${(props) => props.theme.font.secondary};

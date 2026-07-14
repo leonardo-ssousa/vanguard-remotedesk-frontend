@@ -19,10 +19,30 @@ export interface DeviceRenameResponse {
   updatedDevice: Device;
 }
 
+export interface LoginResponse {
+  access_token: string;
+  user: User;
+}
+
 //#endregion
 
 //#region REQUESTS
 export interface DeviceRenameRequest {
   name: string;
 }
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
 //#endregion
+
+
+export interface BackendError {
+  message: string
+}
+
+export interface ApiErrorResponse {
+  status: number | undefined;
+  message: string | undefined;
+}

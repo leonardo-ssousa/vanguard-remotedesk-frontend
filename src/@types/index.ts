@@ -17,13 +17,12 @@ export interface Device {
 }
 
 export interface User {
-  createAt: string;
-  email: string;
-  friendlyName: string;
   id: string;
+  friendlyName: string;
+  email: string;
   isActive: boolean;
   isAdmin: false;
-  password: string;
+  createAt: string;
 }
 
 export interface ConectionsHistory {

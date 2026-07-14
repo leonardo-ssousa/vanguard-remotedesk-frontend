@@ -1,20 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { FooterLabel, Header, LoginForm, LoginPageWrapper, LogoContainer } from "./styles";
+import { FooterLabel, Header, LoginForm, LoginPageWrapper, LogoContainer, ErrorLabel } from "./styles";
 import logo from "../../assets/logo.svg";
 import { Card } from "../../components/Card";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
+import { useAuth } from "../../contexts/AuthContext";
+import type { ApiErrorResponse } from "../../@types/api";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@empresa.com");
+  const [email, setEmail] = useState("usuario@empresa.com");
   const [password, setPassword] = useState("admin");
+  const [error, setError] = useState<string>("");
+  const { signIn } = useAuth()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // signIn();
-    navigate("/devices");
+
+    try{
+      setError("")
+      await signIn(email, password);
+      navigate("/devices")
+    } catch (error) {
+      const apiError = error as ApiErrorResponse
+      setError(apiError?.message || "")
+    }
   };
 
   return (
@@ -32,7 +43,6 @@ function LoginPage() {
           <Input
             id="email"
             title="E-mail"
-            type="email"
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -47,6 +57,10 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          {
+            error &&
+            <ErrorLabel>{error}</ErrorLabel>
+          }
           <Button buttonType="primary" type="submit" style={{padding: "12px 0", marginTop: "12px"}}>Entrar</Button>
         </LoginForm>
       </Card>
