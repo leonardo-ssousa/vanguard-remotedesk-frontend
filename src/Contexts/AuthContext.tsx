@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signIn = async (email: string, password: string) => {
     try {
       const userRes = await Login(email, password)
+      localStorage.setItem('token', userRes.access_token)
+      
       setUser(userRes.user)
       setApiToken(userRes.access_token)
       return userRes.user
