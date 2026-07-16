@@ -8,6 +8,7 @@ import { DevicesDetailsPage } from "./pages/deviceDetails";
 import { DevicesProvider } from "./contexts/DevicesContext";
 import LoginPage from "./pages/login";
 import { AuthProvider } from "./contexts/AuthContext";
+import { UsersPage } from "./pages/Users";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/" element={<DefaultLayout />}>
                 <Route path="devices" element={<DevicesPage />} />
                 <Route path="devices/:id" element={<DevicesDetailsPage />} />
+                <Route path="users" element={<UsersPage />} />
               </Route>
             </Routes>
           </ThemeProvider>

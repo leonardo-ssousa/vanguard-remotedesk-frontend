@@ -19,14 +19,14 @@ function Sidebar() {
       title: "Usuários",
       activeUrl: "users",
       icon: LuUsers,
-      path: ""
+      path: "/users"
     },
     {
       title: "Conexões",
       activeUrl: "conections",
       icon: LuActivity,
       path: ""
-    },
+    }
     
   ]
 
