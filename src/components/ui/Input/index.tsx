@@ -11,15 +11,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = ({ title, StartIcon, EndIcon, ...rest }: InputProps) => {
   return (
     <InputWrapper>
-    {
-      title &&
-      <InputHeader>{title}</InputHeader>
-    }
-    <InputContainer>
-      {StartIcon && <StartIcon />}
-      <input {...rest}/>
-      {EndIcon && <EndIcon />}
-    </InputContainer>
+      {title && <InputHeader>{title}</InputHeader>}
+      <InputContainer>
+        {StartIcon && <StartIcon />}
+        <input {...rest} />
+        {EndIcon && <EndIcon />}
+      </InputContainer>
     </InputWrapper>
-  )
-}
+  );
+};

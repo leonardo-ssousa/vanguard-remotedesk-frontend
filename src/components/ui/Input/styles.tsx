@@ -4,6 +4,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  background-color: ${props => props.theme.background.primary};
 `;
 
 export const InputHeader = styled.h4`
